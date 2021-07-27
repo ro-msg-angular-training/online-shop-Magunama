@@ -1,0 +1,30 @@
+<div id="header">
+  <div id="left">
+    <h1 id="prod-desc">Products</h1>
+  </div>
+
+  <div id="right">
+    <button type="button">
+      <fa-icon [icon]="faShoppingCart"></fa-icon>
+    </button>
+
+    <button type="button">ADD</button>
+  </div>
+
+</div>
+
+<table aria-describedby="prod-desc">
+  <tr>
+    <th id="category">Category</th>
+    <th id="name">Product Name</th>
+    <th id="price">Price</th>
+    <th id="link"></th>
+  </tr>
+
+  <tr *ngFor="let product of products">
+    <td>{{product.category}}</td>
+    <td>{{product.name}}</td>
+    <td>{{product.price}}</td>
+    <td><fa-icon [icon]="faChevronRight"></fa-icon></td>
+  </tr>
+</table>
