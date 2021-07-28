@@ -13,14 +13,15 @@ button {
 
   #left {
     padding-left: 5%;
-    width: 75%;
+    width: 60%;
   }
 
   #right {
     display: flex;
 
     width: 25%;
-    padding: 1.5%;
+    padding-block: 1.5%;
+    padding-inline: 3%;
   }
 }
 
@@ -28,13 +29,17 @@ button {
   display: flex;
 
   table {
-    width: 60%;
+    width: 70%;
     margin-left: 5%;
 
     th {
       text-align: right;
-      padding-inline: 5%;
     }
+
+    td {
+      padding-inline: 3%;
+    }
+
   }
 
 }

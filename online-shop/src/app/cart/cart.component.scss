@@ -1,0 +1,12 @@
+@import "../product-list/product-list.component";
+
+button {
+  @include colored-button;
+
+  width: 30%;
+  margin-inline: 3%;
+}
+
+a {
+  color: red;
+}

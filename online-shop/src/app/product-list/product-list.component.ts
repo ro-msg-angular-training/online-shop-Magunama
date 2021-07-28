@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
 
-import {products} from '../products';
+import {ProductService} from "../product.service";
+import {Product} from "../products";
 
 @Component({
   selector: 'app-product-list',
@@ -14,11 +15,15 @@ export class ProductListComponent implements OnInit {
   faShoppingCart = faShoppingCart;
   faChevronRight = faChevronRight;
 
-  products = products;
+  products: Product[] = [];
 
-  constructor() { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
+    this.loadProducts();
   }
 
+  loadProducts(): void {
+    this.productService.getProducts().subscribe(products => this.products = products);
+  }
 }

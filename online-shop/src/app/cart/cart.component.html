@@ -1,0 +1,30 @@
+<div id="header">
+  <div id="left">
+    <h1 id="prod-desc">Shopping Cart</h1>
+  </div>
+
+  <div id="right">
+    <button type="button" (click)="checkout()" [routerLink]="['/products']">CHECKOUT</button>
+  </div>
+
+</div>
+
+<table aria-describedby="prod-desc">
+  <tr>
+    <th id="category">Category</th>
+    <th id="name">Product Name</th>
+    <th id="price">Price (per unit)</th>
+    <th id="quantity">Quantity</th>
+    <th id="cancel"></th>
+  </tr>
+
+  <tr *ngFor="let product of products">
+    <td>{{product.category}}</td>
+    <td>{{product.name}}</td>
+    <td>{{product.price}}</td>
+    <td>{{product.quantity}}</td>
+    <td><a [title]="'Remove ' + product.name + ' from cart'" (click)="removeFromCart(product)">
+      <fa-icon [icon]="faTrashAlt"></fa-icon>
+    </a></td>
+  </tr>
+</table>
