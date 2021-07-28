@@ -1,0 +1,41 @@
+@import "../../styles/_base";
+@import '../../styles/_buttons';
+
+button {
+  @include colored-button;
+
+  width: 25%;
+  margin-inline: 3%;
+}
+
+#header {
+  display: flex;
+
+  #left {
+    padding-left: 5%;
+    width: 75%;
+  }
+
+  #right {
+    display: flex;
+
+    width: 25%;
+    padding: 1.5%;
+  }
+}
+
+#details {
+  display: flex;
+
+  table {
+    width: 60%;
+    margin-left: 5%;
+
+    th {
+      text-align: right;
+      padding-inline: 5%;
+    }
+  }
+
+}
+

@@ -1,0 +1,34 @@
+<div id="header">
+  <div id="left">
+    <h1 id="prod-desc">Product: {{productId}}</h1>
+  </div>
+
+  <div id="right" *ngIf="product">
+    <button id="edit" type="button">EDIT</button>
+    <button class="red-button" type="button">DELETE</button>
+  </div>
+</div>
+
+<div id="details" *ngIf="product">
+  <table aria-describedby="prod-desc">
+    <tr>
+      <th id="name">Name</th>
+      <td>{{product.name}}</td>
+    </tr>
+    <tr>
+      <th id="category">Category</th>
+      <td>{{product.category}}</td>
+    </tr>
+    <tr>
+      <th id="price">Price</th>
+      <td>{{product.price | currency: 'RON '}}</td>
+    </tr>
+    <tr>
+      <th id="description">Description</th>
+      <td>{{product.description}}</td>
+    </tr>
+  </table>
+
+  <img src="{{product.imageUrl}}" [alt]="product.name + ' image'" width="200px" height="266px">
+</div>
+

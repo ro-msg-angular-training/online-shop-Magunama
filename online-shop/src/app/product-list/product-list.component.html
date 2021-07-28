@@ -25,6 +25,8 @@
     <td>{{product.category}}</td>
     <td>{{product.name}}</td>
     <td>{{product.price}}</td>
-    <td><fa-icon [icon]="faChevronRight"></fa-icon></td>
+    <td><a [title]="product.name + ' details'" [routerLink]="['/products', product.id]">
+      <fa-icon [icon]="faChevronRight"></fa-icon>
+    </a></td>
   </tr>
 </table>

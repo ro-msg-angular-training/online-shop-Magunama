@@ -1,14 +1,8 @@
-$primary-color: #6a1b9a;
-$primary-color-light: #9c4dcc;
-$primary-color-dark: #38006b;
+@import "../../styles/_base";
+@import '../../styles/_buttons';
 
 button {
-  color: white;
-  background-color: $primary-color;
-  font-size: 15px;
-
-  border: 1px solid $primary-color-dark;
-  border-radius: 15%;
+  @include colored-button;
 
   width: 25%;
   margin-inline: 3%;
@@ -44,9 +38,9 @@ table {
     padding-inline: 1%;
   }
 
-  #link-anchor {
-    color: $primary-color;
-    text-align: center;
-    padding-inline: 0;
-  }
+  //#link-anchor {
+  //  color: $primary-color;
+  //  padding-inline: 0;
+  //  text-align: center;
+  //}
 }

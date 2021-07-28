@@ -1,0 +1,11 @@
+@mixin colored-button($color: $primary-color) {
+  color: white;
+  background-color: $color;
+  font-size: 15px;
+  border: 1px solid $primary-color-dark;
+  border-radius: 15%;
+}
+
+.red-button {
+  @include colored-button($color: Red);
+}
