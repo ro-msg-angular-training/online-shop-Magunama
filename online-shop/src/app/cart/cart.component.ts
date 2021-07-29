@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {faTrashAlt} from "@fortawesome/free-solid-svg-icons";
-import {Product} from "../products";
+import {Product} from "../model/product";
 import {CartService} from "../cart.service";
 
 @Component({

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {Product} from "./products";
+import {Product} from "./model/product";
 import {HttpClient} from "@angular/common/http";
 import {Observable, of} from "rxjs";
 import {catchError} from "rxjs/operators";
@@ -10,6 +10,8 @@ import {catchError} from "rxjs/operators";
   providedIn: 'root'
 })
 export class CartService {
+  orderUrl = '/api/orders';
+
   private products: Product[] = [];
 
   constructor(private http: HttpClient) {}
@@ -57,13 +59,12 @@ export class CartService {
   }
 
   checkout(): Observable<unknown> {
-    const orderUrl = 'http://localhost:3000/orders';
     const products = this.products;
     const order = {
       "customer": "doej",
       products
     };
-    return this.http.post(orderUrl, order)
+    return this.http.post(this.orderUrl, order)
       .pipe(
         catchError(this.handleError('addOrder', order))
       );

@@ -1,0 +1,59 @@
+@import "../../styles/_base";
+@import '../../styles/_buttons';
+
+button {
+  @include colored-button;
+}
+
+#cancel {
+  background-color: gray;
+}
+
+.prod-title {
+  padding-left: 5%;
+}
+
+form {
+  width: 100%;
+}
+
+input {
+  width: 100%;
+}
+
+table {
+  width: 90%;
+  margin-left: 3%;
+  border-spacing: 1em 0.5em;
+
+  th {
+    width: 5%;
+    text-align: right;
+  }
+
+  td {
+    padding-inline: 1%;
+  }
+}
+
+#description {
+  width: 90%;
+  margin-inline: 3%;
+}
+
+#spacer {
+  background-color: red;
+  width: 70%;
+  float: left;
+}
+
+#button-container {
+  display: flex;
+  //flex-direction: row;
+  //flex-wrap: wrap;
+  //justify-content: center;
+
+  float: right;
+  width: 25%;
+  padding-block: 1.5%;
+}

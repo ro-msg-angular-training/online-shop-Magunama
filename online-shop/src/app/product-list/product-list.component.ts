@@ -4,7 +4,7 @@ import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
 
 import {ProductService} from "../product.service";
-import {Product} from "../products";
+import {Product} from "../model/product";
 
 @Component({
   selector: 'app-product-list',

@@ -7,7 +7,7 @@
     <button id="add" type="button" (click)="addToCart()">
       <fa-icon [icon]="faCartPlus"></fa-icon>
     </button>
-    <button id="edit" type="button">EDIT</button>
+    <button id="edit" type="button" [routerLink]="['/products/editor', productId]">EDIT</button>
     <button class="red-button" type="button" (click)="delete()" [routerLink]="['/products']">DELETE</button>
   </div>
 </div>

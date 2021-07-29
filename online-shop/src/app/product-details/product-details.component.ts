@@ -4,7 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {faCartPlus} from "@fortawesome/free-solid-svg-icons";
 
 import {ProductService} from "../product.service";
-import {Product} from '../products';
+import {Product} from '../model/product';
 import {CartService} from "../cart.service";
 
 
