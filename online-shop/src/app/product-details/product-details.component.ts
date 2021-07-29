@@ -6,6 +6,7 @@ import {faCartPlus} from "@fortawesome/free-solid-svg-icons";
 import {ProductService} from "../product.service";
 import {Product} from '../model/product';
 import {CartService} from "../cart.service";
+import {AuthService} from "../auth/auth.service";
 
 
 @Component({
@@ -19,10 +20,14 @@ export class ProductDetailsComponent implements OnInit {
   product: Product|undefined;
   productId: number = 0;
 
+  isCustomer = this.authService.hasRole('customer');
+  isAdmin = this.authService.hasRole('admin');
+
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {

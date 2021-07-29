@@ -1,0 +1,22 @@
+<form [formGroup]="loginForm">
+  <h1>Sign in</h1>
+  <hr>
+
+  <ul *ngIf="!authService.isLoggedIn">
+    <li><label for="username">Username: </label></li>
+    <li><input id="username" type="text" formControlName="username"></li>
+
+    <li><label for="password">Password: </label></li>
+    <li><input id="password" type="password" formControlName="password"></li>
+
+  </ul>
+  <p *ngIf="authService.isLoggedIn">
+    You are currently logged in with the following roles: <strong>{{this.roles}}</strong>.
+    <br><br>Click <a [routerLink]="['/products']">here</a> to go home.
+  </p>
+
+  <div>
+    <button (click)="login()"  *ngIf="!authService.isLoggedIn">Login</button>
+    <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
+  </div>
+</form>

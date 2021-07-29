@@ -4,11 +4,11 @@
   </div>
 
   <div id="right">
-    <button type="button" [routerLink]="['/cart']">
+    <button type="button" [routerLink]="['/cart']" *ngIf="isCustomer">
       <fa-icon [icon]="faShoppingCart"></fa-icon>
     </button>
 
-    <button type="button" [routerLink]="['/products/editor/']">ADD</button>
+    <button type="button" [routerLink]="['/products/editor/']" *ngIf="isAdmin">ADD</button>
   </div>
 
 </div>

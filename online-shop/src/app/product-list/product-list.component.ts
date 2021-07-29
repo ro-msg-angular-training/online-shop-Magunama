@@ -5,6 +5,7 @@ import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
 
 import {ProductService} from "../product.service";
 import {Product} from "../model/product";
+import {AuthService} from "../auth/auth.service";
 
 @Component({
   selector: 'app-product-list',
@@ -17,7 +18,13 @@ export class ProductListComponent implements OnInit {
 
   products: Product[] = [];
 
-  constructor(private productService: ProductService) { }
+  isCustomer = this.authService.hasRole('customer');
+  isAdmin = this.authService.hasRole('admin');
+
+  constructor(
+    private productService: ProductService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.loadProducts();
