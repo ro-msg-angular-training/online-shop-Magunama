@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Product} from "../model/product";
-import {ProductService} from "../product.service";
+import {IAppState} from "../store/state/app.state";
+import {select, Store} from "@ngrx/store";
+import {selectSelectedProduct} from "../store/selectors/product.selectors";
+import {AddProduct, GetProduct, UpdateProduct} from "../store/actions/product.actions";
 
 
 enum EditorMode {
@@ -16,8 +19,8 @@ enum EditorMode {
   styleUrls: ['./product-editor.component.scss']
 })
 export class ProductEditorComponent implements OnInit {
-  product: Product|undefined;
   productId !: number;
+  product$ = this.store.pipe(select(selectSelectedProduct));
 
   mode: EditorMode = EditorMode.CREATE;
 
@@ -33,7 +36,7 @@ export class ProductEditorComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private productService: ProductService,
+    private store: Store<IAppState>,
     private router: Router
   ) { }
 
@@ -48,19 +51,22 @@ export class ProductEditorComponent implements OnInit {
   }
 
   loadProduct(): void {
-    this.productService.getProduct(this.productId).subscribe(product => this.initializeForm(product));
+    this.store.dispatch(new GetProduct(this.productId));
+    this.product$.subscribe(product => {
+      if (product) {
+        this.initializeForm(product);
+      }
+    });
   }
 
   initializeForm(product: Product): void {
-    this.product = product;
-
     this.productForm.patchValue({
-        id: this.product.id,
-        name: this.product.name,
-        category: this.product.category,
-        imageUrl: this.product.imageUrl,
-        price: this.product.price,
-        description: this.product.description
+        id: product.id,
+        name: product.name,
+        category: product.category,
+        imageUrl: product.imageUrl,
+        price: product.price,
+        description: product.description
     });
   }
 
@@ -68,12 +74,9 @@ export class ProductEditorComponent implements OnInit {
     const product = this.productForm.value as Product;
 
     if (this.mode === EditorMode.CREATE) {
-      this.productService.addProduct(product).subscribe(
-        ret => this.router.navigate(['/products/', ret.id])
-      );
-
+      this.store.dispatch(new AddProduct(product));
     } else {
-      this.productService.updateProduct(product).subscribe();
+      this.store.dispatch(new UpdateProduct(product));
       this.router.navigate(['/products/', product.id]);
     }
   }

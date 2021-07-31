@@ -3,8 +3,8 @@
     <h1 id="prod-desc">Shopping Cart</h1>
   </div>
 
-  <div id="right">
-    <button type="button" (click)="checkout()" [routerLink]="['/products']">CHECKOUT</button>
+  <div id="right" *ngIf="cartItems$ | async as cartItems">
+    <button type="button" (click)="checkout(cartItems)" [routerLink]="['/products']">CHECKOUT</button>
   </div>
 
 </div>
@@ -18,13 +18,15 @@
     <th id="cancel"></th>
   </tr>
 
-  <tr *ngFor="let product of products">
-    <td>{{product.category}}</td>
-    <td>{{product.name}}</td>
-    <td>{{product.price}}</td>
-    <td>{{product.quantity}}</td>
-    <td><a [title]="'Remove ' + product.name + ' from cart'" (click)="removeFromCart(product)">
-      <fa-icon [icon]="faTrashAlt"></fa-icon>
-    </a></td>
-  </tr>
+  <ng-container *ngIf="cartItems$ | async as cartItems">
+    <tr *ngFor="let item of cartItems">
+      <td>{{item.category}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.price}}</td>
+      <td>{{item.quantity}}</td>
+      <td><a [title]="'Remove ' + item.name + ' from cart'" (click)="removeFromCart(item)">
+        <fa-icon [icon]="faTrashAlt"></fa-icon>
+      </a></td>
+    </tr>
+  </ng-container>
 </table>

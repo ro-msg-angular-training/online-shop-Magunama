@@ -4,11 +4,11 @@
   </div>
 
   <div id="right">
-    <button type="button" [routerLink]="['/cart']" *ngIf="isCustomer">
+    <button type="button" [routerLink]="['/cart']" *ngIf="isCustomer$ | async">
       <fa-icon [icon]="faShoppingCart"></fa-icon>
     </button>
 
-    <button type="button" [routerLink]="['/products/editor/']" *ngIf="isAdmin">ADD</button>
+    <button type="button" [routerLink]="['/products/editor/']" *ngIf="isAdmin$ | async">ADD</button>
   </div>
 
 </div>
@@ -20,13 +20,14 @@
     <th id="price">Price</th>
     <th id="link"></th>
   </tr>
-
-  <tr *ngFor="let product of products">
-    <td>{{product.category}}</td>
-    <td>{{product.name}}</td>
-    <td>{{product.price}}</td>
-    <td><a [title]="product.name + ' details'" [routerLink]="['/products', product.id]">
-      <fa-icon [icon]="faChevronRight"></fa-icon>
-    </a></td>
-  </tr>
+  <ng-container *ngIf="products$ | async as products">
+    <tr *ngFor="let product of products">
+      <td>{{product.category}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td><a [title]="product.name + ' details'" [routerLink]="['/products', product.id]">
+        <fa-icon [icon]="faChevronRight"></fa-icon>
+      </a></td>
+    </tr>
+  </ng-container>
 </table>

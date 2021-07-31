@@ -7,6 +7,12 @@ import {ProductService} from "../product.service";
 import {Product} from '../model/product';
 import {CartService} from "../cart.service";
 import {AuthService} from "../auth/auth.service";
+import {IAppState} from "../store/state/app.state";
+import {select, Store} from "@ngrx/store";
+import {selectSelectedProduct} from "../store/selectors/product.selectors";
+import {DeleteProduct, GetProduct} from "../store/actions/product.actions";
+import {AddCartItem} from "../store/actions/cart.actions";
+import {selectAuthIsAdmin, selectAuthIsCustomer} from "../store/selectors/auth.selectors";
 
 
 @Component({
@@ -17,39 +23,39 @@ import {AuthService} from "../auth/auth.service";
 export class ProductDetailsComponent implements OnInit {
   faCartPlus = faCartPlus;
 
-  product: Product|undefined;
-  productId: number = 0;
+  productId !: number;
+  product$ = this.store.pipe(select(selectSelectedProduct));
 
-  isCustomer = this.authService.hasRole('customer');
-  isAdmin = this.authService.hasRole('admin');
+  isCustomer$ = this.store.pipe(select(selectAuthIsCustomer));
+  isAdmin$ = this.store.pipe(select(selectAuthIsAdmin));
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store<IAppState>
   ) { }
 
   ngOnInit(): void {
-    const routeParams = this.route.snapshot.paramMap;
-    this.productId = Number(routeParams.get('productId'));
     this.loadProduct();
   }
 
   loadProduct(): void {
-    // Find the product that correspond with the id provided in route.
-    this.productService.getProduct(this.productId).subscribe(product => this.product = product);
+    const routeParams = this.route.snapshot.paramMap;
+    this.productId = Number(routeParams.get('productId'));
+
+    // Find the product that corresponds with the id provided in route.
+    this.store.dispatch(new GetProduct(this.productId));
   }
 
   delete(): void {
     // todo: add confirmation dialog
-    this.productService.deleteProduct(this.productId).subscribe();
+    this.store.dispatch(new DeleteProduct(this.productId));
   }
 
-  addToCart(): void {
-    if (this.product) {
-      this.cartService.addToCart(this.product);
-    }
+  addToCart(product: Product): void {
+    this.store.dispatch(new AddCartItem(product));
     alert("Added to cart!");
   }
 

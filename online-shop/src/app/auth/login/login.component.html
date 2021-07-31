@@ -2,7 +2,7 @@
   <h1>Sign in</h1>
   <hr>
 
-  <ul *ngIf="!authService.isLoggedIn">
+  <ul *ngIf="!(isLoggedIn$ | async)">
     <li><label for="username">Username: </label></li>
     <li><input id="username" type="text" formControlName="username"></li>
 
@@ -10,13 +10,13 @@
     <li><input id="password" type="password" formControlName="password"></li>
 
   </ul>
-  <p *ngIf="authService.isLoggedIn">
-    You are currently logged in with the following roles: <strong>{{this.roles}}</strong>.
+  <p *ngIf="isLoggedIn$ | async">
+    You are currently logged in with the following roles: <strong>{{roles$ | async}}</strong>.
     <br><br>Click <a [routerLink]="['/products']">here</a> to go home.
   </p>
 
   <div>
-    <button (click)="login()"  *ngIf="!authService.isLoggedIn">Login</button>
-    <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
+    <button (click)="login()"  *ngIf="!(isLoggedIn$ | async)">Login</button>
+    <button (click)="logout()" *ngIf="isLoggedIn$ | async">Logout</button>
   </div>
 </form>

@@ -3,16 +3,18 @@
     <h1 id="prod-desc">Product: {{productId}}</h1>
   </div>
 
-  <div id="right" *ngIf="product">
-    <button id="add" type="button" (click)="addToCart()" *ngIf="isCustomer">
+  <div id="right" *ngIf="product$ | async as product">
+    <button id="add" type="button" (click)="addToCart(product)" *ngIf="isCustomer$ | async">
       <fa-icon [icon]="faCartPlus"></fa-icon>
     </button>
-    <button id="edit" type="button" [routerLink]="['/products/editor', productId]" *ngIf="isAdmin">EDIT</button>
-    <button class="red-button" type="button" (click)="delete()" [routerLink]="['/products']" *ngIf="isAdmin">DELETE</button>
+    <ng-container *ngIf="isAdmin$ | async">
+      <button id="edit" type="button" [routerLink]="['/products/editor', productId]">EDIT</button>
+      <button class="red-button" type="button" (click)="delete()" [routerLink]="['/products']">DELETE</button>
+    </ng-container>
   </div>
 </div>
 
-<div id="details" *ngIf="product">
+<div id="details" *ngIf="product$ | async as product">
   <table aria-describedby="prod-desc">
     <tr>
       <th id="name">Name</th>

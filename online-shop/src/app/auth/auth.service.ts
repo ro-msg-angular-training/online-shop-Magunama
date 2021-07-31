@@ -10,8 +10,6 @@ import {User} from "../model/user";
 })
 export class AuthService {
   loginUrl = '/api/login';
-  isLoggedIn = false;
-  roles: string[] = [];
 
   // store the URL so we can redirect after logging in
   redirectUrl: string | null = null;
@@ -26,20 +24,6 @@ export class AuthService {
       .pipe(
         catchError(this.handleError('login', creds))
       );
-  }
-
-  logout(): void {
-    this.isLoggedIn = false;
-    this.roles = [];
-  }
-
-  logUser(user: any) {
-    this.isLoggedIn = true;
-    this.roles = user.roles;
-  }
-
-  hasRole(role: string): boolean {
-    return this.roles.includes(role);
   }
 
   redirect(): void {

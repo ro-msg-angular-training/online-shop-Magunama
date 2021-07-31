@@ -2,12 +2,36 @@ import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import { Observable } from 'rxjs';
 import {AuthService} from "./auth.service";
+import {IAppState} from "../store/state/app.state";
+import {select, Store} from "@ngrx/store";
+import {selectAuthIsCustomer, selectAuthIsLoggedIn} from "../store/selectors/auth.selectors";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerAuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  isLoggedIn$ = this.store.pipe(select(selectAuthIsLoggedIn));
+  isCustomer$ = this.store.pipe(select(selectAuthIsCustomer));
+
+  isCustomer = false;
+  isLoggedIn = false;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private store: Store<IAppState>
+  ) {
+    this.isLoggedIn$.subscribe((ret) => {
+      if (ret) {
+        this.isLoggedIn = ret;
+      }
+    });
+    this.isCustomer$.subscribe((ret) => {
+      if (ret) {
+        this.isCustomer = ret;
+      }
+    });
+  }
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -17,9 +41,9 @@ export class CustomerAuthGuard implements CanActivate {
     return this.checkLogin(url);
   }
 
-  checkLogin(url: string): true|UrlTree {
-    if (this.authService.isLoggedIn) {
-      if (this.authService.hasRole('customer')) {
+  checkLogin(url: string): boolean | UrlTree {
+    if (this.isLoggedIn) {
+      if (this.isCustomer) {
         return true;
       }
       alert('Improper roles!');

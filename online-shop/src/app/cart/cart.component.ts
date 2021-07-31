@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import {Product} from "../model/product";
 import {CartService} from "../cart.service";
+import {select, Store} from "@ngrx/store";
+import {IAppState} from "../store/state/app.state";
+import {LoadCartItems, PlaceOrder, RemoveCartItem} from "../store/actions/cart.actions";
+import {selectCartItems} from "../store/selectors/cart.selectors";
 
 @Component({
   selector: 'app-cart',
@@ -11,27 +15,28 @@ import {CartService} from "../cart.service";
 export class CartComponent implements OnInit {
   faTrashAlt = faTrashAlt;
 
-  products: Product[] = [];
+  cartItems$ = this.store.pipe(select(selectCartItems));
 
-  constructor(private cartService: CartService) { }
+  constructor(
+    private cartService: CartService,
+    private store: Store<IAppState>
+  ) { }
 
   ngOnInit(): void {
     this.loadCart();
   }
 
   loadCart(): void {
-    this.products = this.cartService.getCart();
+    this.store.dispatch(new LoadCartItems());
   }
 
   removeFromCart(product: Product): void {
-    this.cartService.removeFromCart(product);
-    this.ngOnInit();
+    this.store.dispatch(new RemoveCartItem(product))
   }
 
-  checkout(): void {
-    if (this.products.length > 0) {
-      this.cartService.checkout();
-      this.cartService.emptyCart();
+  checkout(products: Product[]): void {
+    if (products.length > 0) {
+      this.store.dispatch(new PlaceOrder());
       alert("Order placed!");
     }
   }

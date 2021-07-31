@@ -1,4 +1,4 @@
-<div *ngIf="product else elseBlock">
+<div *ngIf="product$ | async else elseBlock">
   <h1 class="prod-title" >Edit product: {{productId}}</h1>
 </div>
 <ng-template #elseBlock>
@@ -32,7 +32,7 @@
   <textarea id="description" type="text" formControlName="description" rows="3"></textarea>
 
   <div id="button-container">
-    <div *ngIf="product else elseBlock2">
+    <div *ngIf="product$ | async else elseBlock2">
       <button [id]="'cancel'" type="button" [routerLink]="['/products', productId]">CANCEL</button>
     </div>
     <ng-template #elseBlock2>

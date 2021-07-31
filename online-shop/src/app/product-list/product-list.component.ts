@@ -3,9 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
 
-import {ProductService} from "../product.service";
-import {Product} from "../model/product";
 import {AuthService} from "../auth/auth.service";
+import {IAppState} from "../store/state/app.state";
+import {select, Store} from "@ngrx/store";
+import {GetProducts} from "../store/actions/product.actions";
+import {selectProductList} from "../store/selectors/product.selectors";
+import {selectAuthIsAdmin, selectAuthIsCustomer} from "../store/selectors/auth.selectors";
 
 @Component({
   selector: 'app-product-list',
@@ -16,14 +19,14 @@ export class ProductListComponent implements OnInit {
   faShoppingCart = faShoppingCart;
   faChevronRight = faChevronRight;
 
-  products: Product[] = [];
+  products$ = this.store.pipe(select(selectProductList));
 
-  isCustomer = this.authService.hasRole('customer');
-  isAdmin = this.authService.hasRole('admin');
+  isCustomer$ = this.store.pipe(select(selectAuthIsCustomer));
+  isAdmin$ = this.store.pipe(select(selectAuthIsAdmin));
 
   constructor(
-    private productService: ProductService,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store<IAppState>
   ) { }
 
   ngOnInit(): void {
@@ -31,6 +34,6 @@ export class ProductListComponent implements OnInit {
   }
 
   loadProducts(): void {
-    this.productService.getProducts().subscribe(products => this.products = products);
+    this.store.dispatch(new GetProducts());
   }
 }
