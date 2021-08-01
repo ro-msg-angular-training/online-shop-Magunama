@@ -28,3 +28,8 @@ export const selectAuthFailedLogin = createSelector(
   selectAuth,
   (state: IAuthState) => state.failedLogin
 );
+
+export const selectAuthUsername = createSelector(
+  selectAuth,
+  (state: IAuthState) => state.user?.username
+);

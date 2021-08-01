@@ -14,13 +14,17 @@ export class CartService {
 
   constructor(private http: HttpClient) {}
 
-  checkout(products: Product[]): Observable<unknown> {
+  checkout(username: any, products: Product[]): Observable<unknown> {
     const order = {
-      "customer": "doej",
-      products
+      "customer": username,
+      "products": products.map((prod) => {
+        return {
+          productId: prod.id,
+          quantity: prod.quantity
+        }
+      })
     };
-    console.log(order);
-    return this.http.post(this.orderUrl, order)
+    return this.http.post(this.orderUrl, order, {responseType: 'text'})
       .pipe(
         catchError(this.handleError('addOrder', order))
       );

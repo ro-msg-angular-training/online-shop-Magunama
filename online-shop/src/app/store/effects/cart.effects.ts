@@ -12,6 +12,7 @@ import {CartService} from "../../cart.service";
 import {IAppState} from "../state/app.state";
 import {Action, Store} from "@ngrx/store";
 import {selectCartItems} from "../selectors/cart.selectors";
+import {selectAuthUsername} from "../selectors/auth.selectors";
 
 
 @Injectable()
@@ -41,8 +42,12 @@ export class CartEffects {
   placeOrder$ = createEffect(() => {
     return this.actions$.pipe(
       ofType<PlaceOrder>(ECartActions.PlaceOrder),
-      withLatestFrom(this.store.select(selectCartItems)),
-      switchMap(([_, products]) => this.cartService.checkout(products)),
+      withLatestFrom(
+        this.store.select(selectAuthUsername),
+        this.store.select(selectCartItems)),
+      switchMap(([_, username, products]) => {
+          return this.cartService.checkout(username, products);
+      }),
       switchMap(() => of(new PlaceOrderSuccess()))
     )
   });
