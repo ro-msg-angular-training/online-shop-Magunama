@@ -4,6 +4,9 @@
   </div>
 
   <div id="right" *ngIf="product$ | async as product">
+    <button type="button" [routerLink]="['/']">
+      <fa-icon [icon]="faHome"></fa-icon>
+    </button>
     <button id="add" type="button" (click)="addToCart(product)" *ngIf="isCustomer$ | async">
       <fa-icon [icon]="faCartPlus"></fa-icon>
     </button>

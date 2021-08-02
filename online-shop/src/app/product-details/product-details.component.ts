@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 
-import {faCartPlus} from "@fortawesome/free-solid-svg-icons";
+import {faCartPlus, faHome} from "@fortawesome/free-solid-svg-icons";
 
 import {ProductService} from "../product.service";
 import {Product} from '../model/product';
@@ -22,6 +22,7 @@ import {selectAuthIsAdmin, selectAuthIsCustomer} from "../store/selectors/auth.s
 })
 export class ProductDetailsComponent implements OnInit {
   faCartPlus = faCartPlus;
+  faHome = faHome;
 
   productId !: number;
   product$ = this.store.pipe(select(selectSelectedProduct));

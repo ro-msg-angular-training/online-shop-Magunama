@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {faTrashAlt} from "@fortawesome/free-solid-svg-icons";
+import {faTrashAlt, faHome} from "@fortawesome/free-solid-svg-icons";
 import {Product} from "../model/product";
 import {CartService} from "../cart.service";
 import {select, Store} from "@ngrx/store";
@@ -14,6 +14,7 @@ import {selectCartItems} from "../store/selectors/cart.selectors";
 })
 export class CartComponent implements OnInit {
   faTrashAlt = faTrashAlt;
+  faHome = faHome;
 
   cartItems$ = this.store.pipe(select(selectCartItems));
 
