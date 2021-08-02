@@ -4,15 +4,15 @@
   </div>
 
   <div id="right" *ngIf="product$ | async as product">
-    <button type="button" [routerLink]="['/']">
+    <button mat-flat-button color="primary" type="button" [routerLink]="['/']">
       <fa-icon [icon]="faHome"></fa-icon>
     </button>
-    <button id="add" type="button" (click)="addToCart(product)" *ngIf="isCustomer$ | async">
+    <button mat-flat-button color="primary" id="add" type="button" (click)="addToCart(product)" *ngIf="isCustomer$ | async">
       <fa-icon [icon]="faCartPlus"></fa-icon>
     </button>
     <ng-container *ngIf="isAdmin$ | async">
-      <button id="edit" type="button" [routerLink]="['/products/editor', productId]">EDIT</button>
-      <button class="red-button" type="button" (click)="delete()" [routerLink]="['/products']">DELETE</button>
+      <button mat-flat-button color="primary" id="edit" type="button" [routerLink]="['/products/editor', productId]">EDIT</button>
+      <button mat-flat-button color="warn" type="button" (click)="delete()" [routerLink]="['/products']">DELETE</button>
     </ng-container>
   </div>
 </div>

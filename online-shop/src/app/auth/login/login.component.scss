@@ -1,17 +1,17 @@
 @import "../../../styles/_base";
 @import '../../../styles/_buttons';
 
-button {
+#default-button {
   @include colored-button;
 }
 
 form {
-  border: solid 2px $primary-color-dark;
+  border: solid 2px $my-primary-color-dark;
   width: 25%;
   margin: auto;
 
   h1 {
-    color: $primary-color-dark;
+    color: $my-primary-color-dark;
     padding-left: 5%;
   }
 
@@ -23,7 +23,7 @@ form {
     list-style-type: none;
 
     li {
-      color: $primary-color-dark;
+      color: $my-primary-color-dark;
       margin: 5px 0;
     }
   }

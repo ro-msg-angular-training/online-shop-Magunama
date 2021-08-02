@@ -7,19 +7,22 @@ import {AuthLogin, AuthLogout} from "../../store/actions/auth.actions";
 import {selectAuthFailedLogin, selectAuthIsLoggedIn, selectAuthUserRoles} from "../../store/selectors/auth.selectors";
 import {AuthService} from "../auth.service";
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  hidePassword = true;
+
   isLoggedIn$ = this.store.pipe(select(selectAuthIsLoggedIn));
   failedLogin$ = this.store.pipe(select(selectAuthFailedLogin));
   roles$ = this.store.pipe(select(selectAuthUserRoles));
 
   loginForm = this.formBuilder.group({
-    username: ['', [Validators.required]],
-    password: ['', [Validators.required]],
+    username: ['magu', [Validators.required]],
+    password: ['rhodo', [Validators.required]],
   });
 
   constructor(

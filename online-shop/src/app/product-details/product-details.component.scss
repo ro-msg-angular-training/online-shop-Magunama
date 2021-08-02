@@ -11,7 +11,7 @@ button {
   #left {
     padding-left: 5%;
     width: 60%;
-    color: $primary-color-dark;
+    color: $my-primary-color-dark;
   }
 
   #right {
@@ -24,7 +24,7 @@ button {
 }
 
 #details {
-  color: $primary-color-dark;
+  color: $my-primary-color-dark;
   display: flex;
 
   table {

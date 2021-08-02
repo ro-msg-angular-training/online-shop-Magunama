@@ -1,5 +1,6 @@
 @import "../../styles/_base";
 @import '../../styles/_buttons';
+@import "../../styles/styles";
 
 button {
   @include colored-button;
@@ -11,7 +12,7 @@ button {
   #left {
     padding-left: 5%;
     width: 75%;
-    color: $primary-color-dark;
+    color: $my-primary-color-dark;
   }
 
   #right {
@@ -23,16 +24,20 @@ button {
 }
 
 table {
-  color: $primary-color-dark;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
 
-  border: 5px groove $primary-color-dark;
+  border: 3px groove $my-primary-color-dark;
   border-collapse: collapse;
 
+  th {
+    font-weight: bold;
+  }
+
   th, td {
-    border: 2px groove $primary-color-dark;
+    color: $my-primary-color-dark;
+    border: 2px groove $my-primary-color-dark;
     text-align: left;
     padding-inline: 1%;
   }

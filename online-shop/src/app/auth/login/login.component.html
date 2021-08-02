@@ -3,11 +3,22 @@
   <hr>
 
   <ul *ngIf="!(isLoggedIn$ | async)">
-    <li><label for="username">Username: </label></li>
-    <li><input id="username" type="text" formControlName="username"></li>
+    <li>
+      <mat-form-field>
+        <mat-label>Username:</mat-label>
+        <input type="text" matInput required formControlName="username">
+      </mat-form-field>
+    </li>
 
-    <li><label for="password">Password: </label></li>
-    <li><input id="password" type="password" formControlName="password"></li>
+    <li>
+      <mat-form-field>
+        <mat-label>Password:</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" required formControlName="password">
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </li>
 
   </ul>
   <p *ngIf="isLoggedIn$ | async">
@@ -16,7 +27,7 @@
   </p>
 
   <div>
-    <button (click)="login()"  *ngIf="!(isLoggedIn$ | async)">Login</button>
-    <button (click)="logout()" *ngIf="isLoggedIn$ | async">Logout</button>
+    <button mat-flat-button color="primary" class="default-button" (click)="login()"  *ngIf="!(isLoggedIn$ | async)">Login</button>
+    <button mat-flat-button color="primary" class="default-button" (click)="logout()" *ngIf="isLoggedIn$ | async">Logout</button>
   </div>
 </form>

@@ -19,7 +19,7 @@ enum EditorMode {
   styleUrls: ['./product-editor.component.scss']
 })
 export class ProductEditorComponent implements OnInit {
-  productId !: number;
+  productId : number | undefined;
   product$ = this.store.pipe(select(selectSelectedProduct));
 
   mode: EditorMode = EditorMode.CREATE;
@@ -51,7 +51,7 @@ export class ProductEditorComponent implements OnInit {
   }
 
   loadProduct(): void {
-    this.store.dispatch(new GetProduct(this.productId));
+    this.store.dispatch(new GetProduct(this.productId!));
     this.product$.subscribe(product => {
       if (product) {
         this.initializeForm(product);

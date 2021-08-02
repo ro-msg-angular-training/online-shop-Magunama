@@ -5,18 +5,14 @@ button {
   @include colored-button;
 }
 
-#cancel {
-  background-color: gray;
-}
-
 .prod-title {
   padding-left: 5%;
-  color: $primary-color-dark;
+  color: $my-primary-color-dark;
 }
 
 form {
   width: 100%;
-  color: $primary-color-dark;
+  color: $my-primary-color-dark;
 }
 
 input {
@@ -44,16 +40,12 @@ table {
 }
 
 #spacer {
-  background-color: red;
   width: 70%;
   float: left;
 }
 
 #button-container {
   display: flex;
-  //flex-direction: row;
-  //flex-wrap: wrap;
-  //justify-content: center;
 
   float: right;
   width: 25%;

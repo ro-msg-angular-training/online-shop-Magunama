@@ -15,12 +15,17 @@ import { LoginComponent } from './auth/login/login.component';
 import {StoreModule} from "@ngrx/store";
 import {appReducers} from "./store/reducers/app.reducers";
 import {EffectsModule} from "@ngrx/effects";
-import {ProductEffects} from "./store/effects/product.effects";
 import {StoreRouterConnectingModule} from "@ngrx/router-store";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {environment} from "../environments/environment";
-import {CartEffects} from "./store/effects/cart.effects";
-import {AuthEffects} from "./store/effects/auth.effects";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {appEffects} from "./store/effects/app.effects";
+
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -36,12 +41,14 @@ import {AuthEffects} from "./store/effects/auth.effects";
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([ProductEffects, CartEffects, AuthEffects]),
+    EffectsModule.forRoot(appEffects),
     // StoreRouterConnectingModule.forRoot({'stateKey': 'router'}),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AppRoutingModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule, MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

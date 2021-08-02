@@ -1,14 +1,9 @@
-@mixin colored-button($color: $primary-color) {
-  color: white;
-  background-color: $color;
-  font-size: 20px;
-  border: 1px solid $primary-color-dark;
-  border-radius: 15%;
-  cursor: pointer;
-
-  margin-inline: 3%;
+@mixin colored-button {
+  border: 1px solid $my-primary-color-dark;
+  margin-inline: 2%;
 }
 
-.red-button {
-  @include colored-button($color: Red);
+.gray-button {
+  @include colored-button;
+  background-color: gray;
 }

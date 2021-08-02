@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
 

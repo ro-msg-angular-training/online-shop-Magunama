@@ -4,30 +4,40 @@
   </div>
 
   <div id="right">
-    <button type="button" [routerLink]="['/cart']" *ngIf="isCustomer$ | async">
+    <button mat-flat-button type="button" color="primary" [routerLink]="['/cart']" *ngIf="isCustomer$ | async">
       <fa-icon [icon]="faShoppingCart"></fa-icon>
     </button>
 
-    <button type="button" [routerLink]="['/products/editor/']" *ngIf="isAdmin$ | async">ADD</button>
+    <button mat-flat-button type="button" color="primary" [routerLink]="['/products/editor/']" *ngIf="isAdmin$ | async">ADD</button>
   </div>
 
 </div>
 
-<table aria-describedby="prod-desc">
-  <tr>
-    <th id="category">Category</th>
-    <th id="name">Product Name</th>
-    <th id="price">Price</th>
-    <th id="link"></th>
-  </tr>
-  <ng-container *ngIf="products$ | async as products">
-    <tr *ngFor="let product of products">
-      <td>{{product.category}}</td>
-      <td>{{product.name}}</td>
-      <td>{{product.price}}</td>
-      <td><a [title]="product.name + ' details'" [routerLink]="['/products', product.id]">
-        <fa-icon [icon]="faChevronRight"></fa-icon>
-      </a></td>
-    </tr>
+<table mat-table [dataSource]="products$" aria-describedby="prod-desc">
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef id="category">Category</th>
+    <td mat-cell *matCellDef="let product">{{product.category}}</td>
   </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef id="name">Name</th>
+    <td mat-cell *matCellDef="let product">{{product.name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef id="price">Price</th>
+    <td mat-cell *matCellDef="let product">{{product.price}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="link">
+    <th mat-header-cell *matHeaderCellDef id="link"></th>
+    <td mat-cell *matCellDef="let product">
+      <a [title]="product.name + ' details'" [routerLink]="['/products', product.id]">
+        <fa-icon [icon]="faChevronRight"></fa-icon>
+      </a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['category', 'name', 'price', 'link']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['category', 'name', 'price', 'link'];"></tr>
 </table>

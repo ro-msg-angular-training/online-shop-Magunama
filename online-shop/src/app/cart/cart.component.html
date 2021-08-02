@@ -4,32 +4,44 @@
   </div>
 
   <div id="right" *ngIf="cartItems$ | async as cartItems">
-    <button type="button" [routerLink]="['/']">
+    <button mat-flat-button color="primary" type="button" [routerLink]="['/']">
       <fa-icon [icon]="faHome"></fa-icon>
     </button>
-    <button type="button" (click)="checkout(cartItems)" [routerLink]="['/products']">CHECKOUT</button>
+    <button mat-flat-button color="primary" type="button" (click)="checkout(cartItems)" [routerLink]="['/products']">CHECKOUT</button>
   </div>
 
 </div>
 
-<table aria-describedby="prod-desc">
-  <tr>
-    <th id="category">Category</th>
-    <th id="name">Product Name</th>
-    <th id="price">Price (per unit)</th>
-    <th id="quantity">Quantity</th>
-    <th id="cancel"></th>
-  </tr>
-
-  <ng-container *ngIf="cartItems$ | async as cartItems">
-    <tr *ngFor="let item of cartItems">
-      <td>{{item.category}}</td>
-      <td>{{item.name}}</td>
-      <td>{{item.price}}</td>
-      <td>{{item.quantity}}</td>
-      <td><a [title]="'Remove ' + item.name + ' from cart'" (click)="removeFromCart(item)">
-        <fa-icon [icon]="faTrashAlt"></fa-icon>
-      </a></td>
-    </tr>
+<table mat-table [dataSource]="cartItems$" aria-describedby="prod-desc">
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef id="category">Category</th>
+    <td mat-cell *matCellDef="let item">{{item.category}}</td>
   </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef id="name">Product Name</th>
+    <td mat-cell *matCellDef="let item">{{item.name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef id="price">Price (per unit)</th>
+    <td mat-cell *matCellDef="let item">{{item.price}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantity">
+    <th mat-header-cell *matHeaderCellDef id="quantity">Quantity</th>
+    <td mat-cell *matCellDef="let item">{{item.quantity}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="trash">
+    <th mat-header-cell *matHeaderCellDef id="trash"></th>
+    <td mat-cell *matCellDef="let item">
+      <a [title]="'Remove ' + item.name + ' from cart'" (click)="removeFromCart(item)">
+        <fa-icon [icon]="faTrashAlt"></fa-icon>
+      </a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['category', 'name', 'price', 'quantity', 'trash']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['category', 'name', 'price', 'quantity', 'trash'];"></tr>
 </table>
