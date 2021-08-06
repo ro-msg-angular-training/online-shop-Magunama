@@ -8,7 +8,7 @@ import {
   PlaceOrder, PlaceOrderSuccess,
   RemoveCartItem, RemoveCartItemSuccess, SaveCartItemsSuccess
 } from "../actions/cart.actions";
-import {CartService} from "../../cart.service";
+import {CartService} from "../../service/cart.service";
 import {IAppState} from "../state/app.state";
 import {Action, Store} from "@ngrx/store";
 import {selectCartItems} from "../selectors/cart.selectors";

@@ -1,18 +1,18 @@
 <form [formGroup]="loginForm">
-  <h1>Sign in</h1>
+  <h1 i18n>Sign in</h1>
   <hr>
 
   <ul *ngIf="!(isLoggedIn$ | async)">
     <li>
       <mat-form-field>
-        <mat-label>Username:</mat-label>
+        <mat-label i18n>Username:</mat-label>
         <input type="text" matInput required formControlName="username">
       </mat-form-field>
     </li>
 
     <li>
       <mat-form-field>
-        <mat-label>Password:</mat-label>
+        <mat-label i18n>Password:</mat-label>
         <input matInput [type]="hidePassword ? 'password' : 'text'" required formControlName="password">
         <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
           <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -21,13 +21,13 @@
     </li>
 
   </ul>
-  <p *ngIf="isLoggedIn$ | async">
+  <p *ngIf="isLoggedIn$ | async" i18n>
     You are currently logged in with the following roles: <strong>{{roles$ | async}}</strong>.
     <br><br>Click <a [routerLink]="['/products']">here</a> to go home.
   </p>
 
   <div>
-    <button mat-flat-button color="primary" class="default-button" (click)="login()"  *ngIf="!(isLoggedIn$ | async)">Login</button>
-    <button mat-flat-button color="primary" class="default-button" (click)="logout()" *ngIf="isLoggedIn$ | async">Logout</button>
+    <button mat-flat-button color="primary" class="default-button" (click)="login()"  *ngIf="!(isLoggedIn$ | async)" i18n>Login</button>
+    <button mat-flat-button color="primary" class="default-button" (click)="logout()" *ngIf="isLoggedIn$ | async" i18n>Logout</button>
   </div>
 </form>

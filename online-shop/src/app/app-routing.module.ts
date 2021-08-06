@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import {ProductListComponent} from "./product-list/product-list.component";
-import {ProductDetailsComponent} from "./product-details/product-details.component";
-import {CartComponent} from "./cart/cart.component";
-import {ProductEditorComponent} from "./product-editor/product-editor.component";
+import {ProductListComponent} from "./component/product-list/product-list.component";
+import {ProductDetailsComponent} from "./component/product-details/product-details.component";
+import {CartComponent} from "./component/cart/cart.component";
+import {ProductEditorComponent} from "./component/product-editor/product-editor.component";
 import {LoginComponent} from "./auth/login/login.component";
 import {AuthGuard} from "./auth/auth.guard";
 

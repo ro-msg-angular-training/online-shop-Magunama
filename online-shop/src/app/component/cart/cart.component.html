@@ -1,35 +1,35 @@
 <div id="header">
   <div id="left">
-    <h1 id="prod-desc">Shopping Cart</h1>
+    <h1 id="prod-desc" i18n>Shopping Cart</h1>
   </div>
 
   <div id="right" *ngIf="cartItems$ | async as cartItems">
     <button mat-flat-button color="primary" type="button" [routerLink]="['/']">
       <fa-icon [icon]="faHome"></fa-icon>
     </button>
-    <button mat-flat-button color="primary" type="button" (click)="checkout(cartItems)" [routerLink]="['/products']">CHECKOUT</button>
+    <button mat-flat-button color="primary" type="button" (click)="checkout(cartItems)" [routerLink]="['/products']" i18n>CHECKOUT</button>
   </div>
 
 </div>
 
 <table mat-table [dataSource]="cartItems$" aria-describedby="prod-desc">
   <ng-container matColumnDef="category">
-    <th mat-header-cell *matHeaderCellDef id="category">Category</th>
+    <th mat-header-cell *matHeaderCellDef id="category" i18n>Category</th>
     <td mat-cell *matCellDef="let item">{{item.category}}</td>
   </ng-container>
 
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef id="name">Product Name</th>
+    <th mat-header-cell *matHeaderCellDef id="name" i18n>Product Name</th>
     <td mat-cell *matCellDef="let item">{{item.name}}</td>
   </ng-container>
 
   <ng-container matColumnDef="price">
-    <th mat-header-cell *matHeaderCellDef id="price">Price (per unit)</th>
+    <th mat-header-cell *matHeaderCellDef id="price" i18n>Price (per unit)</th>
     <td mat-cell *matCellDef="let item">{{item.price}}</td>
   </ng-container>
 
   <ng-container matColumnDef="quantity">
-    <th mat-header-cell *matHeaderCellDef id="quantity">Quantity</th>
+    <th mat-header-cell *matHeaderCellDef id="quantity" i18n>Quantity</th>
     <td mat-cell *matCellDef="let item">{{item.quantity}}</td>
   </ng-container>
 

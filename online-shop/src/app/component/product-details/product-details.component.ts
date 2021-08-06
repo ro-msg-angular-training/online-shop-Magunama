@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 import {faCartPlus, faHome} from "@fortawesome/free-solid-svg-icons";
 
-import {ProductService} from "../product.service";
-import {Product} from '../model/product';
-import {CartService} from "../cart.service";
-import {AuthService} from "../auth/auth.service";
-import {IAppState} from "../store/state/app.state";
+import {ProductService} from "../../service/product.service";
+import {Product} from '../../model/product';
+import {CartService} from "../../service/cart.service";
+import {AuthService} from "../../auth/auth.service";
+import {IAppState} from "../../store/state/app.state";
 import {select, Store} from "@ngrx/store";
-import {selectSelectedProduct} from "../store/selectors/product.selectors";
-import {DeleteProduct, GetProduct} from "../store/actions/product.actions";
-import {AddCartItem} from "../store/actions/cart.actions";
-import {selectAuthIsAdmin, selectAuthIsCustomer} from "../store/selectors/auth.selectors";
+import {selectSelectedProduct} from "../../store/selectors/product.selectors";
+import {DeleteProduct, GetProduct} from "../../store/actions/product.actions";
+import {AddCartItem} from "../../store/actions/cart.actions";
+import {selectAuthIsAdmin, selectAuthIsCustomer} from "../../store/selectors/auth.selectors";
 
 
 @Component({
@@ -35,7 +35,8 @@ export class ProductDetailsComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
     private authService: AuthService,
-    private store: Store<IAppState>
+    private store: Store<IAppState>,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -51,8 +52,10 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   delete(): void {
-    // todo: add confirmation dialog
-    this.store.dispatch(new DeleteProduct(this.productId));
+    if(confirm("Are you sure you want to remove this product?")) {
+      this.store.dispatch(new DeleteProduct(this.productId));
+      this.router.navigate(['/products/']);
+    }
   }
 
   addToCart(product: Product): void {

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Product} from "../model/product";
-import {IAppState} from "../store/state/app.state";
+import {Product} from "../../model/product";
+import {IAppState} from "../../store/state/app.state";
 import {select, Store} from "@ngrx/store";
-import {selectSelectedProduct} from "../store/selectors/product.selectors";
-import {AddProduct, GetProduct, UpdateProduct} from "../store/actions/product.actions";
+import {selectSelectedProduct} from "../../store/selectors/product.selectors";
+import {AddProduct, GetProduct, UpdateProduct} from "../../store/actions/product.actions";
 
 
 enum EditorMode {

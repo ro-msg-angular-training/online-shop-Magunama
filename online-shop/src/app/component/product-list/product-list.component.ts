@@ -4,12 +4,12 @@ import { Component, OnInit } from '@angular/core';
 import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
 
-import {AuthService} from "../auth/auth.service";
-import {IAppState} from "../store/state/app.state";
+import {AuthService} from "../../auth/auth.service";
+import {IAppState} from "../../store/state/app.state";
 import {select, Store} from "@ngrx/store";
-import {GetProducts} from "../store/actions/product.actions";
-import {selectProductList} from "../store/selectors/product.selectors";
-import {selectAuthIsAdmin, selectAuthIsCustomer} from "../store/selectors/auth.selectors";
+import {GetProducts} from "../../store/actions/product.actions";
+import {selectProductList} from "../../store/selectors/product.selectors";
+import {selectAuthIsAdmin, selectAuthIsCustomer} from "../../store/selectors/auth.selectors";
 
 @Component({
   selector: 'app-product-list',

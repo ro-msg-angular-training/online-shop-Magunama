@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {faTrashAlt, faHome} from "@fortawesome/free-solid-svg-icons";
-import {Product} from "../model/product";
-import {CartService} from "../cart.service";
+import {Product} from "../../model/product";
+import {CartService} from "../../service/cart.service";
 import {select, Store} from "@ngrx/store";
-import {IAppState} from "../store/state/app.state";
-import {LoadCartItems, PlaceOrder, RemoveCartItem} from "../store/actions/cart.actions";
-import {selectCartItems} from "../store/selectors/cart.selectors";
+import {IAppState} from "../../store/state/app.state";
+import {LoadCartItems, PlaceOrder, RemoveCartItem} from "../../store/actions/cart.actions";
+import {selectCartItems} from "../../store/selectors/cart.selectors";
 
 @Component({
   selector: 'app-cart',

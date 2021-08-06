@@ -1,6 +1,6 @@
 <div id="header">
   <div id="left">
-    <h1 id="prod-desc">Product: {{productId}}</h1>
+    <h1 id="prod-desc" i18n>Product: {{productId}}</h1>
   </div>
 
   <div id="right" *ngIf="product$ | async as product">
@@ -11,8 +11,8 @@
       <fa-icon [icon]="faCartPlus"></fa-icon>
     </button>
     <ng-container *ngIf="isAdmin$ | async">
-      <button mat-flat-button color="primary" id="edit" type="button" [routerLink]="['/products/editor', productId]">EDIT</button>
-      <button mat-flat-button color="warn" type="button" (click)="delete()" [routerLink]="['/products']">DELETE</button>
+      <button mat-flat-button color="primary" id="edit" type="button" [routerLink]="['/products/editor', productId]" i18n>EDIT</button>
+      <button mat-flat-button color="warn" type="button" (click)="delete()" i18n>DELETE</button>
     </ng-container>
   </div>
 </div>
@@ -20,19 +20,19 @@
 <div id="details" *ngIf="product$ | async as product">
   <table aria-describedby="prod-desc">
     <tr>
-      <th id="name">Name</th>
+      <th id="name" i18n>Name</th>
       <td>{{product.name}}</td>
     </tr>
     <tr>
-      <th id="category">Category</th>
+      <th id="category" i18n>Category</th>
       <td>{{product.category}}</td>
     </tr>
     <tr>
-      <th id="price">Price</th>
+      <th id="price" i18n>Price</th>
       <td>{{product.price | currency: 'RON '}}</td>
     </tr>
     <tr>
-      <th id="description">Description</th>
+      <th id="description" i18n>Description</th>
       <td>{{product.description}}</td>
     </tr>
   </table>

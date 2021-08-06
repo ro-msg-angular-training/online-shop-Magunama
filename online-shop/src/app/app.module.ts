@@ -5,11 +5,11 @@ import {HttpClientModule} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { ProductListComponent } from './product-list/product-list.component';
+import { ProductListComponent } from './component/product-list/product-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ProductDetailsComponent } from './product-details/product-details.component';
-import { CartComponent } from './cart/cart.component';
-import { ProductEditorComponent } from './product-editor/product-editor.component';
+import { ProductDetailsComponent } from './component/product-details/product-details.component';
+import { CartComponent } from './component/cart/cart.component';
+import { ProductEditorComponent } from './component/product-editor/product-editor.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { LoginComponent } from './auth/login/login.component';
 import {StoreModule} from "@ngrx/store";

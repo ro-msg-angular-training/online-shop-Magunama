@@ -1,6 +1,6 @@
-@import "../../styles/_base";
-@import '../../styles/_buttons';
-@import "../../styles/styles";
+@import "../../../styles/base";
+@import '../../../styles/buttons';
+@import "../../../styles/styles";
 
 button {
   @include colored-button;
