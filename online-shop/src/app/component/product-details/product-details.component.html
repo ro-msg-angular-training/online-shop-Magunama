@@ -1,0 +1,42 @@
+<div id="header">
+  <div id="left">
+    <h1 id="prod-desc" i18n>Product: {{productId}}</h1>
+  </div>
+
+  <div id="right" *ngIf="product$ | async as product">
+    <button mat-flat-button color="primary" type="button" [routerLink]="['/']">
+      <fa-icon [icon]="faHome"></fa-icon>
+    </button>
+    <button mat-flat-button color="primary" id="add" type="button" (click)="addToCart(product)" *ngIf="isCustomer$ | async">
+      <fa-icon [icon]="faCartPlus"></fa-icon>
+    </button>
+    <ng-container *ngIf="isAdmin$ | async">
+      <button mat-flat-button color="primary" id="edit" type="button" [routerLink]="['/products/editor', productId]" i18n>EDIT</button>
+      <button mat-flat-button color="warn" type="button" (click)="delete()" i18n>DELETE</button>
+    </ng-container>
+  </div>
+</div>
+
+<div id="details" *ngIf="product$ | async as product">
+  <table aria-describedby="prod-desc">
+    <tr>
+      <th id="name" i18n>Name</th>
+      <td>{{product.name}}</td>
+    </tr>
+    <tr>
+      <th id="category" i18n>Category</th>
+      <td>{{product.category}}</td>
+    </tr>
+    <tr>
+      <th id="price" i18n>Price</th>
+      <td>{{product.price | currency: 'RON '}}</td>
+    </tr>
+    <tr>
+      <th id="description" i18n>Description</th>
+      <td>{{product.description}}</td>
+    </tr>
+  </table>
+
+  <img src="{{product.imageUrl}}" [alt]="product.name + ' image'" width="200px" height="266px">
+</div>
+

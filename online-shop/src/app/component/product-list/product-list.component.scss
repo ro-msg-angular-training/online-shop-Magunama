@@ -1,0 +1,44 @@
+@import "../../../styles/base";
+@import '../../../styles/buttons';
+@import "../../../styles/styles";
+
+button {
+  @include colored-button;
+}
+
+#header {
+  display: flex;
+
+  #left {
+    padding-left: 5%;
+    width: 75%;
+    color: $my-primary-color-dark;
+  }
+
+  #right {
+    display: flex;
+
+    width: 25%;
+    padding: 1.5%;
+  }
+}
+
+table {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+
+  border: 3px groove $my-primary-color-dark;
+  border-collapse: collapse;
+
+  th {
+    font-weight: bold;
+  }
+
+  th, td {
+    color: $my-primary-color-dark;
+    border: 2px groove $my-primary-color-dark;
+    text-align: left;
+    padding-inline: 1%;
+  }
+}

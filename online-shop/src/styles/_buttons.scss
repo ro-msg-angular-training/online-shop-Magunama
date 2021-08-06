@@ -1,0 +1,9 @@
+@mixin colored-button {
+  border: 1px solid $my-primary-color-dark;
+  margin-inline: 2%;
+}
+
+.gray-button {
+  @include colored-button;
+  background-color: gray;
+}

@@ -1,0 +1,45 @@
+@import "../../../styles/base";
+@import '../../../styles/buttons';
+
+button {
+  @include colored-button;
+}
+
+#header {
+  display: flex;
+
+  #left {
+    padding-left: 5%;
+    width: 60%;
+    color: $my-primary-color-dark;
+  }
+
+  #right {
+    display: flex;
+
+    width: 25%;
+    padding-block: 1.5%;
+    padding-inline: 3%;
+  }
+}
+
+#details {
+  color: $my-primary-color-dark;
+  display: flex;
+
+  table {
+    width: 70%;
+    margin-left: 5%;
+
+    th {
+      text-align: right;
+    }
+
+    td {
+      padding-inline: 3%;
+    }
+
+  }
+
+}
+

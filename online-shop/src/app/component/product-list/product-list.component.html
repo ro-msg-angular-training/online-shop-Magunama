@@ -1,0 +1,43 @@
+<div id="header">
+  <div id="left">
+    <h1 id="prod-desc" i18n>Products</h1>
+  </div>
+
+  <div id="right">
+    <button mat-flat-button type="button" color="primary" [routerLink]="['/cart']" *ngIf="isCustomer$ | async">
+      <fa-icon [icon]="faShoppingCart"></fa-icon>
+    </button>
+
+    <button mat-flat-button type="button" color="primary" [routerLink]="['/products/editor/']" *ngIf="isAdmin$ | async" i18n>ADD</button>
+  </div>
+
+</div>
+
+<table mat-table [dataSource]="products$" aria-describedby="prod-desc">
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef id="category" i18n>Category</th>
+    <td mat-cell *matCellDef="let product">{{product.category}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef id="name" i18n>Name</th>
+    <td mat-cell *matCellDef="let product">{{product.name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef id="price" i18n>Price</th>
+    <td mat-cell *matCellDef="let product">{{product.price}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="link">
+    <th mat-header-cell *matHeaderCellDef id="link"></th>
+    <td mat-cell *matCellDef="let product">
+      <a [title]="product.name + ' details'" [routerLink]="['/products', product.id]">
+        <fa-icon [icon]="faChevronRight"></fa-icon>
+      </a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['category', 'name', 'price', 'link']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['category', 'name', 'price', 'link'];"></tr>
+</table>

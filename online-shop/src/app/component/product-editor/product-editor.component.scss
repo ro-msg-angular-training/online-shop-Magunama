@@ -1,0 +1,53 @@
+@import "../../../styles/base";
+@import '../../../styles/buttons';
+
+button {
+  @include colored-button;
+}
+
+.prod-title {
+  padding-left: 5%;
+  color: $my-primary-color-dark;
+}
+
+form {
+  width: 100%;
+  color: $my-primary-color-dark;
+}
+
+input {
+  width: 100%;
+}
+
+table {
+  width: 90%;
+  margin-left: 3%;
+  border-spacing: 1em 0.5em;
+
+  th {
+    width: 5%;
+    text-align: right;
+  }
+
+  td {
+    padding-inline: 1%;
+  }
+}
+
+#description {
+  width: 90%;
+  margin-inline: 3%;
+}
+
+#spacer {
+  width: 70%;
+  float: left;
+}
+
+#button-container {
+  display: flex;
+
+  float: right;
+  width: 25%;
+  padding-block: 1.5%;
+}
